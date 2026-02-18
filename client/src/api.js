@@ -6,7 +6,6 @@ import axios from "axios";
 const API_URL =
   "https://azure-cicd-poc-backend-b0b2enarf6bxfdga.southindia-01.azurewebsites.net/api/items";
 
-
 export const getItems = () => axios.get(API_URL);
 export const createItem = (item) => axios.post(API_URL, item);
 export const deleteItem = (id) => axios.delete(`${API_URL}/${id}`);

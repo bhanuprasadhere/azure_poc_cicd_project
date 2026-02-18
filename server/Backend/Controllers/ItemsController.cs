@@ -31,4 +31,28 @@ public class ItemsController : ControllerBase
         await _mongoService.CreateAsync(newItem);
         return CreatedAtAction(nameof(Get), new { id = newItem.Id }, newItem);
     }
+
+    // --- THIS WAS MISSING ---
+    [HttpPut("{id:length(24)}")]
+    public async Task<IActionResult> Update(string id, Item updatedItem)
+    {
+        var item = await _mongoService.GetAsync(id);
+        if (item is null) return NotFound();
+
+        updatedItem.Id = item.Id;
+        await _mongoService.UpdateAsync(id, updatedItem);
+
+        return NoContent();
+    }
+
+    [HttpDelete("{id:length(24)}")]
+    public async Task<IActionResult> Delete(string id)
+    {
+        var item = await _mongoService.GetAsync(id);
+        if (item is null) return NotFound();
+
+        await _mongoService.RemoveAsync(id);
+
+        return NoContent();
+    }
 }
