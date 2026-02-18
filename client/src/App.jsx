@@ -57,6 +57,7 @@ function App() {
         {items.map((item) => (
           <li key={item.id} style={{ 
             background: '#f4f4f4', 
+            color: '#333',
             margin: '5px 0', 
             padding: '10px', 
             display: 'flex', 
